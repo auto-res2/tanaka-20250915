@@ -1,0 +1,20 @@
+# =======================
+# Smoke-test configuration
+# =======================
+seed_list: [13]
+run_name: "crest_smoke"
+output_dir: "results/smoke"
+
+datasets:
+  dummy_dataset:
+    url: "https://example.com/dummy.tar"
+    sha256: "e3b0c44298fc1c149afbf4c8996fb924"
+    subset: 10
+    image_size: 64
+
+hardware_emulation:
+  vram_gb: 4
+
+experiments:
+  - name: exp_demo
+    type: demo

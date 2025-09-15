@@ -1,0 +1,20 @@
+# =======================
+# Full-scale configuration (placeholder)
+# =======================
+seed_list: [13, 17, 23]
+run_name: "crest_full"
+output_dir: "results/full"
+
+datasets:
+  dummy_dataset:
+    url: "https://example.com/dummy.tar"
+    sha256: "e3b0c44298fc1c149afbf4c8996fb924"
+    subset: null
+    image_size: 64
+
+hardware_emulation:
+  vram_gb: 4
+
+experiments:
+  - name: exp_demo_full
+    type: demo
