@@ -113,22 +113,19 @@ class VRAMLimiter(contextlib.ContextDecorator):
 # -----------------------------------------------------------------------------
 
 class CRESTRuntime:
-    """Lightweight wrapper around the *external* CREST implementation."""
+    """Lightweight wrapper around the local CREST implementation."""
 
     def __init__(self, variant: str, epsilon: float = float("inf")) -> None:
         try:
-            import crest  # noqa: F401  – external optional dependency
-        except ModuleNotFoundError as err:  # pragma: no cover – missing dependency
+            from .crest_impl import DiT_CRESTRunner
+        except ImportError as err:
             raise ImportError(
-                "The experiment requires the `crest` Python package which could not "
-                "be found. Install CREST (see paper for details) before running the "
-                "full experiment."
+                "The CREST implementation could not be loaded. Check crest_impl.py"
             ) from err
 
         self.variant = variant
         self.epsilon = epsilon
-        # The attribute might be missing from type stubs – fetch dynamically
-        self.runner = getattr(crest, "DiT_CRESTRunner")(variant=variant, epsilon=epsilon)
+        self.runner = DiT_CRESTRunner(variant=variant, epsilon=epsilon)
 
     @torch.no_grad()
     def generate(self, pipe, num_images: int, seed: int, **kwargs) -> Dict:

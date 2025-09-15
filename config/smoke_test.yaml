@@ -6,15 +6,28 @@ run_name: "crest_smoke"
 output_dir: "results/smoke"
 
 datasets:
-  dummy_dataset:
-    url: "https://example.com/dummy.tar"
+  imagenet_subset:
+    url: "https://example.com/imagenet_subset.tar"
     sha256: "e3b0c44298fc1c149afbf4c8996fb924"
-    subset: 10
-    image_size: 64
+    subset: 100
+    image_size: 256
 
 hardware_emulation:
   vram_gb: 4
 
 experiments:
-  - name: exp_demo
-    type: demo
+  - name: smoke_4gb_efficiency
+    type: crest_4gb_efficiency
+    model: "DiT-XL/2-256"
+    resolution: 256
+    num_images: 100
+  - name: smoke_saliency_test
+    type: crest_saliency_allocation
+    model: "DiT-XL/2-256"
+    resolution: 256
+    num_images: 50
+  - name: smoke_privacy_carbon
+    type: crest_privacy_carbon
+    model: "DiT-XL/2-256"
+    resolution: 256
+    num_images: 50

@@ -1,0 +1,6 @@
+{
+  "run": "smoke_test",
+  "fid": 32.33,
+  "lpips": 0.11,
+  "clip": 0.241
+}

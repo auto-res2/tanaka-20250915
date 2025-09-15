@@ -69,12 +69,13 @@ def prepare_dataset(spec: Dict) -> Path:
 
     # Attempt download – network might be unavailable → handle gracefully
     try:
-        tmp_file = _DATA_ROOT / f"{name}.tmp"
-        _download(url, tmp_file)
-        if sha256 and _sha256(tmp_file) != sha256:
-            raise RuntimeError("Checksum mismatch – aborting dataset preparation.")
-        # For the scope of this refactor we skip extraction to keep things light
-        tmp_file.unlink(missing_ok=True)
+        if url:
+            tmp_file = _DATA_ROOT / f"{name}.tmp"
+            _download(url, tmp_file)
+            if sha256 and _sha256(tmp_file) != sha256:
+                raise RuntimeError("Checksum mismatch – aborting dataset preparation.")
+            # For the scope of this refactor we skip extraction to keep things light
+            tmp_file.unlink(missing_ok=True)
     except Exception as exc:  # pragma: no cover – best-effort behaviour
         print(f"[WARN] dataset download failed: {exc}.  Falling back to empty dir.")
         # ensure dir exists but leave it empty
