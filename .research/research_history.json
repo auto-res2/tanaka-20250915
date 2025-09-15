@@ -2,5 +2,16 @@
   "research_topic": "Diffusion Transformersのメモリ改善",
   "queries": [
     "diffusion transformer memory optimization"
+  ],
+  "research_study_list": [
+    {
+      "title": "Learning-to-Cache: Accelerating Diffusion Transformer via Layer Caching"
+    },
+    {
+      "title": "DiTFastAttn: Attention Compression for Diffusion Transformer Models"
+    },
+    {
+      "title": "Fast and Memory-Efficient Video Diffusion Using Streamlined Inference"
+    }
   ]
 }
